@@ -1,0 +1,43 @@
+{
+    "name": "sharky",
+    "version": "1.0.0",
+    "description": "A multi-function Discord bot. Leveling | Economy | Custom Commands | Reactions-Roles | Moderation | Fun",
+    "main": "dist/app.js",
+    "scripts": {
+        "start": "rm -r dist/ ||: && tsc && node dist/app.js",
+        "clean": "rm -r dist/",
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/matyeu/sharky.git"
+    },
+    "keywords": [
+        "sharky",
+        "discord-bot",
+        "bot",
+        "discord",
+        "discord-js",
+        "djs-v14",
+        "nodejs",
+        "typescript"
+    ],
+    "author": "matyeu",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/matyeu/sharky/issues"
+    },
+    "homepage": "https://github.com/matyeu/sharky#readme",
+    "devDependencies": {
+        "typescript": "^4.9.4"
+    },
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "dayjs": "^1.11.7",
+        "discord-sync-commands-v2": "^1.0.0",
+        "discord.js": "^14.7.1",
+        "dotenv": "^16.0.3",
+        "mongoose": "^5.13.15",
+        "ms": "^2.1.3"
+    }
+}
