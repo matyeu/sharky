@@ -31,7 +31,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
 export const slash = {
     data: {
-        name: "ping",
+        name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Ping ? Pong !",
         category: "Developpement",
         permissions: ["Administrator"],
