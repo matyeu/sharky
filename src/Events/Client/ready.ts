@@ -44,7 +44,6 @@ export default async function (client: SharkClient) {
         });
 
         for (const command of client.slashCommands.map(command => command)) {
-
             await guild.commands.create(command.slash.data);
         }
     }
