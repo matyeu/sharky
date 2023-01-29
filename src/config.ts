@@ -12,6 +12,6 @@ export const FOOTER_TICKET = "SHARKY - Tickets";
 
 
 export const EMOJIS = {
-    succes: "1067576186886176828",
+    succes: "1069364627252711564",
     error: "1069364669124448316",
 }
