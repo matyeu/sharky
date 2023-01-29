@@ -16,7 +16,7 @@
 
 ## Commands
 
-### Informations
+### Developpement
 
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
 | ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
