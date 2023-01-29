@@ -16,8 +16,10 @@
 
 ## Commands
 
-### Developpement
+### Informations
+
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
+| ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
 | ping          | Ping the bot.                        | none                        | none                  | 10secs |
 
 
