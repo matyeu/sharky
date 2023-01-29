@@ -16,6 +16,12 @@
 
 ## Commands
 
+### Administration
+
+| Name          | Description                          | Sub-commands                | Usage                 | Cd     |
+| ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
+| setlang       | Allows you to change the language    | none                        | none                  | 10secs |
+
 ### Developpement
 
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
