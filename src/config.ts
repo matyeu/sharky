@@ -14,6 +14,10 @@ export const FOOTER_TICKET = "SHARKY - Tickets";
 
 
 export const EMOJIS = {
+    admin: "1069679293149491220",
     succes: "1069364627252711564",
     error: "1069364669124448316",
+    devBot: "1069271813294661722",
+    discordemployee: "1069271841270661160",
+    general: "1069681353836204094"
 }

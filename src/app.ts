@@ -13,9 +13,9 @@ const client = new SharkClient({
 
 loadCommands(client);
 loadEvents(client);
-/*loadButtons(client);
+//loadButtons(client);
 loadSelectMenus(client);
-loadModals(client);*/
+//loadModals(client);
 
 process.on('exit', code => {
     return Logger.error(`Le processus s'est arrêté avec le code : ${code}`)
