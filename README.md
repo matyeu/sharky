@@ -3,7 +3,7 @@
 # SHARKY
 
 [![](https://img.shields.io/discord/983056621716512910.svg?logo=discord&colorB=7289DA)](#)
-[![](https://img.shields.io/badge/discord.js-v13.0.0-blue.svg?logo=npm)](https://discord.js.org/)
+[![](https://img.shields.io/badge/discord.js-v14.0.0-blue.svg?logo=npm)](https://discord.js.org/)
 [![](https://img.shields.io/badge/nodejs-16.6.0-green.svg)](https://www.nodejs.org)
 
 
@@ -20,6 +20,7 @@
 
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
 | ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
+| antibot       | Allow or Deny the addition of bot.   | none                        | none                  | 10secs |
 | setlang       | Allows you to change the language    | none                        | none                  | 10secs |
 
 ### Developpement

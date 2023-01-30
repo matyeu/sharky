@@ -15,6 +15,9 @@ let Guild = model(
             commandes: Array,
             category: Array,
         },
+        modules: {
+            antibot: Boolean
+            },
         language: String
 
     })
@@ -28,6 +31,9 @@ export const def = {
         reason: "",
         commandes: Array,
         category: Array,
+    },
+    modules: {
+        antibot: false,
     },
     language: "fr-FR"
 };
