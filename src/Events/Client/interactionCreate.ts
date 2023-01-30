@@ -1,5 +1,5 @@
 import {SharkClient} from "../../Librairie";
-import {EmbedBuilder, Interaction} from "discord.js";
+import {Collection, EmbedBuilder, Interaction} from "discord.js";
 import {find} from "../../Models/guild";
 import {EMBED_INFO} from "../../config";
 
@@ -44,6 +44,26 @@ export default async function (client: SharkClient, interaction: Interaction) {
                 return interaction.reply({embeds: [embedMaintenance], ephemeral: true});
             }
             // END SYSTEM OF MAINTENANCE
+
+            if (!client.cooldowns.has(interaction.commandName)) client.cooldowns.set(interaction.commandName, new Collection());
+
+            const timeNow = Date.now();
+            const tStamps = client.cooldowns.get(interaction.commandName);
+            const cdAmount = (command.slash.data.cooldown || 10) * 1000;
+
+            if (tStamps.has(interaction.user.id) && administrators.indexOf(interaction.user.id) === -1) {
+                const cdExpirationTime = tStamps.get(interaction.user.id) + cdAmount;
+
+                if (timeNow < cdExpirationTime) {
+                    let timeLeft = (cdExpirationTime - timeNow) / 1000;
+
+                    await interaction.replyErrorMessage(client, languageInter("COOLDOWN").replace('%time%', timeLeft.toFixed(0)), true);
+                    return Logger.warn(`The cooldown was triggered by ${interaction.user.tag} on the ${interaction.commandName} command`);
+                }
+            }
+
+            tStamps.set(interaction.user.id, timeNow);
+            setTimeout(() => tStamps.delete(interaction.user.id), cdAmount);
 
 
             Logger.client(`The ${interaction.commandName} command was used by ${interaction.user.tag} on the ${interaction.guild?.name} server`);

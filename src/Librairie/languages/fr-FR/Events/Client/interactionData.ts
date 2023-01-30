@@ -4,7 +4,8 @@ const interactionDataFR: any = {
     DESCRIPTION_BOT: "**%user%**, une opération de maintenance est actuelement en cours sur **%client%**.",
     DESCRIPTION_COMMAND: "**%user%**, une opération de maintenance est actuelement en cours sur la commande **%command%**.",
     DESCRIPTION_CATEGORY: "**%user%**, une opération de maintenance est actuelement en cours sur le module **%category%**.",
-    REASON: "Raison"
+    REASON: "Raison",
+    COOLDOWN: "Merci de patienter **%time% seconde(s)** pour utiliser cette commande."
 };
 
 
