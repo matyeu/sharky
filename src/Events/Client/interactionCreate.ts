@@ -8,7 +8,7 @@ const Logger = require("../../Librairie/logger");
 export default async function (client: SharkClient, interaction: Interaction) {
 
     const serverConfig: any = await find(interaction.guild!.id);
-    const languageInter = require(`../../Librairie/languages/${serverConfig.language}/Events/interactionData`);
+    const languageInter = require(`../../Librairie/languages/${serverConfig.language}/Events/Client/interactionData`);
 
     const administrators = serverConfig.administrators;
     const member = await interaction.guild!.members.fetch(interaction.user.id);
@@ -64,10 +64,11 @@ export default async function (client: SharkClient, interaction: Interaction) {
         }
     } else if (interaction.isSelectMenu()) {
         try {
-            const getSelectMenu = client.selects.get(interaction.customId);
+            const getSelectMenu = client.selects.get(interaction.customId.split(':')[0]);
             if (!getSelectMenu) return;
+            const languageSelect = require(`../../Librairie/languages/${serverConfig.language}/${getSelectMenu.select.data.filepath}`);
             Logger.client(`The ${interaction.customId} select-menu was used by ${interaction.user.tag} on the ${interaction.guild?.name} server.`);
-            getSelectMenu.default(client, interaction)
+            getSelectMenu.default(client, interaction, languageSelect)
         }
         catch (e) {
             return console.error(e);
