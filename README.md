@@ -27,7 +27,14 @@
 
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
 | ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
+| avatar        | Displays a user's avatar.            | none                        | (user)                | 10secs |
 | help          | Command help.                        | none                        | none                  | 10secs |
+
+### Modération
+
+| Name          | Description                            | Sub-commands                | Usage                      | Cd     |
+| ------------- | -------------------------------------- | --------------------------- | -------------------------  | ------ |
+| redirect      | Redirects a message to another channel | none                        | \<message_id> \<channel>   | 1sec   |
 
 ### Developpement
 
