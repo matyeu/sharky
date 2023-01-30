@@ -8,6 +8,13 @@ let Guild = model(
     "Guild",
     new Schema({
         guildID: String,
+        administrators: Array,
+        maintenance: {
+            state: Boolean,
+            reason: String,
+            commandes: Array,
+            category: Array,
+        },
         language: String
 
     })
@@ -15,6 +22,13 @@ let Guild = model(
 
 export const def = {
     guildID: "",
+    administrators: Array,
+    maintenance: {
+        state: false,
+        reason: "",
+        commandes: Array,
+        category: Array,
+    },
     language: "fr-FR"
 };
 

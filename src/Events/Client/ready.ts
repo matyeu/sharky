@@ -1,7 +1,9 @@
 import {SharkClient} from "../../Librairie";
 import mongoose from "mongoose";
-import {update as updateGuild} from "../../Models/guild";
+import {update as updateGuild, find as findGuild, edit as editGuild} from "../../Models/guild";
 import chalk from "chalk";
+import {readdirSync} from "fs";
+import {SERVER_EMOJI} from "../../config";
 
 const Logger = require("../../Librairie/logger");
 const synchronizeSlashCommands = require('discord-sync-commands-v2');
@@ -12,6 +14,8 @@ export default async function (client: SharkClient) {
     Logger.client(`For ${client.guilds.cache.map(g => g.memberCount).reduce((a, b) => a + b)} users, for ${client.channels.cache.size} channels, for ${client.guilds.cache.size} servers discord !`);
 
     client.user!.setPresence({status: "idle", activities: [{name: `${client.guilds.cache.map(g => g.memberCount).reduce((a, b) => a + b)} membres`, type: 3}]});
+
+    const startTime = Date.now();
 
     const connectDB = await mongoose.connect(process.env.DBCONNECTION!, {
         useNewUrlParser: true,
@@ -24,7 +28,8 @@ export default async function (client: SharkClient) {
         socketTimeoutMS: 45000,
         family: 4
     }).then(() => {
-        Logger.client(`Connected to the database`);
+        const finishTime = Date.now();
+        Logger.client(`Connected to the database (${finishTime - startTime} ms)`);
     }).catch(err => {
         Logger.error("Connection failed. Try reconnecting in 5 seconds...");
         setTimeout(() => connectDB, 5000);
@@ -36,7 +41,20 @@ export default async function (client: SharkClient) {
 
 
     for (let guild of client.guilds.cache.map(guild => guild)) {
+        if (guild.id === SERVER_EMOJI) continue;
+        const serverConfig: any = await findGuild(guild.id);
         await updateGuild(guild.id);
+
+        const categoryFolder = readdirSync('./src/Commands');
+        for (const categoryName of categoryFolder) {
+            let modulesDatabase =  serverConfig.maintenance.category;
+            const moduleAlready = modulesDatabase.find((e: any) => e.categoryName == categoryName);
+
+            if (!moduleAlready) {
+                modulesDatabase.push({categoryName, state: false, reason: ""});
+                await editGuild(guild.id, serverConfig);
+            }
+        }
 
         await synchronizeSlashCommands(client, client.slashCommands.map(command => command.slash.data), {
             debug: false,
@@ -44,7 +62,17 @@ export default async function (client: SharkClient) {
         });
 
         for (const command of client.slashCommands.map(command => command)) {
+            const cmdDatabase =  serverConfig.maintenance.commandes;
+            const cmdName = command.slash.data.name;
+
             await guild.commands.create(command.slash.data);
+
+            const commandAlready = cmdDatabase.find((e: any) => e.cmdName == cmdName);
+
+            if (!commandAlready) {
+                cmdDatabase.push({cmdName, state: false, reason: ""});
+                await editGuild(guild.id, serverConfig);
+            }
         }
     }
 
