@@ -1,3 +1,5 @@
+export const SERVER_EMOJI = "1069264231070978088";
+
 export const EMBED_GENERAL = "#2f3136";
 export const EMBED_ERROR = "#E04F5F";
 export const EMBED_SUCCESS = "#33BEA6";
