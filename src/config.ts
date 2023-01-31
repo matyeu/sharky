@@ -12,6 +12,7 @@ export const FOOTER_CASINO = "SHARKY - Casino";
 export const FOOTER_LOG = "SHARKY - Logs";
 export const FOOTER_TICKET = "SHARKY - Tickets";
 
+export const IDLE_BUTTON = 60000;
 
 export const EMOJIS = {
     admin: "1069679293149491220",
