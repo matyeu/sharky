@@ -5,6 +5,7 @@ const interactionDataEN: any = {
     DESCRIPTION_COMMAND: "**%user%**, a maintenance operation is currently in progress on the **%command%**.",
     DESCRIPTION_CATEGORY: "**%user%**, a maintenance operation is currently in progress on the **%category%** module.",
     REASON: "Reason",
+    ERROR_PERMISSION: "**You do not have** permission to use this command!",
     COOLDOWN: "Please wait **%time% second(s)** to use this command."
 };
 

@@ -45,6 +45,9 @@ export default async function (client: SharkClient, interaction: Interaction) {
             }
             // END SYSTEM OF MAINTENANCE
 
+            if (!member.permissions.has([command.slash.data.permissions]))
+                return interaction.replyErrorMessage(client, languageInter("ERROR_PERMISSION"), true);
+
             if (!client.cooldowns.has(interaction.commandName)) client.cooldowns.set(interaction.commandName, new Collection());
 
             const timeNow = Date.now();

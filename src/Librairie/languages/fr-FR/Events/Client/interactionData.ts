@@ -5,7 +5,8 @@ const interactionDataFR: any = {
     DESCRIPTION_COMMAND: "**%user%**, une opération de maintenance est actuelement en cours sur la commande **%command%**.",
     DESCRIPTION_CATEGORY: "**%user%**, une opération de maintenance est actuelement en cours sur le module **%category%**.",
     REASON: "Raison",
-    COOLDOWN: "Merci de patienter **%time% seconde(s)** pour utiliser cette commande."
+    ERROR_PERMISSION: "**Vous n'avez pas** la permission d'utiliser cette commande !",
+    COOLDOWN: "Merci de patienter **%time% seconde(s)** pour utiliser cette commande.",
 };
 
 
