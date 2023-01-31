@@ -22,11 +22,11 @@ export default async function (client: SharkClient, interaction: SelectMenuInter
             case 'staff':
                 embed.setTitle(`${client.getEmoji(EMOJIS.devBot)} ${language("TITLE_COMMAND")} ${client.getEmoji(EMOJIS.devBot)}`);
                 for (const category of commandFolder) {
-                    if (category !== "Administration" && category !== "Moderation") continue;
+                    if (category !== "Administration" && category !== "Modération") continue;
 
                     const emojisCat = {
                         Administration: client.getEmoji(EMOJIS.admin),
-                        Moderation: client.getEmoji(EMOJIS.discordemployee)
+                        Mod\u00e9ration: client.getEmoji(EMOJIS.discordemployee)
                     }
 
                     embed.addFields({
