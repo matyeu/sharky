@@ -1,4 +1,8 @@
+export const SERVER_SUPPORT = "1069357499146313920";
 export const SERVER_EMOJI = "1069264231070978088";
+
+export const LINK_SUPPORT = "https://discord.gg/ZXmGtgzhfR";
+export const LINK_APP = "https://discord.com/api/oauth2/authorize?client_id=1069356719249035284&permissions=8&scope=bot%20applications.commands"
 
 export const EMBED_GENERAL = "#2f3136";
 export const EMBED_ERROR = "#E04F5F";

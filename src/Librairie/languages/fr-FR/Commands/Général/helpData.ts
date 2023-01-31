@@ -1,6 +1,8 @@
 const helpDataFR: any = {
     TITLE: "❓ Obtenir de l'aide",
     DESCRIPTION: "Vous avez besoin d'informations ? Vous êtes au bon endroit !\nConsulte la liste des sujets pour en savoir plus sur %client%",
+    INVITE_ME: "Invite moi",
+    VOTE_ME: "Vote pour moi",
     PLACEHOLDER: "Sélectionner un sujet",
     LABEL_STAFF: "Commandes staff",
     DESCRIPTION_STAFF: "Avoir la liste des commandes staff",
