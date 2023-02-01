@@ -38,10 +38,11 @@ export default async function (client: SharkClient, interaction: SelectMenuInter
             case 'general':
                 embed.setTitle(`🎈 ${language("TITLE_COMMAND")} 🎈`);
                 for (const category of commandFolder) {
-                    if (category !== "Général") continue;
+                    if (category !== "Général" && category !== "Games") continue;
 
                     const emojisCat = {
-                        G\u00e9n\u00e9ral: client.getEmoji(EMOJIS.general)
+                        G\u00e9n\u00e9ral: client.getEmoji(EMOJIS.general),
+                        Games: client.getEmoji(EMOJIS.game)
                     }
 
                     embed.addFields({
