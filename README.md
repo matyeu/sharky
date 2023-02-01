@@ -30,6 +30,12 @@
 | avatar        | Displays a user's avatar.            | none                        | (user)                | 10secs |
 | help          | Command help.                        | none                        | none                  | 10secs |
 
+### Games
+
+| Name          | Description                          | Sub-commands                | Usage                 | Cd     |
+| ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
+| crash         | Allows you to play crash.            | none                        | \<bet>                | 10secs |
+
 ### Modération
 
 | Name          | Description                            | Sub-commands                | Usage                      | Cd     |
