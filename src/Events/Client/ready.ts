@@ -1,6 +1,7 @@
 import {SharkClient} from "../../Librairie";
 import mongoose from "mongoose";
 import {update as updateGuild, find as findGuild, edit as editGuild} from "../../Models/guild";
+import {update as updateEconomy} from "../../Models/economy";
 import chalk from "chalk";
 import {readdirSync} from "fs";
 import {SERVER_EMOJI} from "../../config";
@@ -43,7 +44,16 @@ export default async function (client: SharkClient) {
     for (let guild of client.guilds.cache.map(guild => guild)) {
         if (guild.id === SERVER_EMOJI) continue;
         const serverConfig: any = await findGuild(guild.id);
+
         await updateGuild(guild.id);
+
+        for (const member of guild.members.cache.map(member => member)) {
+            if (member.user.bot) continue;
+            if (member.guild.id === SERVER_EMOJI) continue;
+
+            await updateEconomy(guild.id, member.user.id);
+
+        }
 
         const categoryFolder = readdirSync('./src/Commands');
         for (const categoryName of categoryFolder) {
