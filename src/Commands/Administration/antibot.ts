@@ -26,6 +26,9 @@ export const slash = {
     data: {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Allow or deny the addition of bot",
+        description_localizations: {
+            fr: "Autorise ou refuse l'ajout de bot",
+        },
         category: "Administration",
         permissions: ["Administrator"],
     }

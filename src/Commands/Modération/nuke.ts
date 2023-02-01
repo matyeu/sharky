@@ -58,6 +58,9 @@ export const slash = {
     data: {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Delete all messages from a channel",
+        description_localizations: {
+            fr: "Supprime tous les messages d'un channel",
+        },
         category: "Modération",
         permissions: ["ManageChannels"],
         cooldown: 1,

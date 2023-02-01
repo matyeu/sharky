@@ -25,13 +25,22 @@ export const slash = {
     data: {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Display the avatar of a member",
+        description_localizations: {
+            fr: "Affiche l'avatar d'un membre",
+        },
         category: "Général",
         permissions: ["SendMessages"],
         options: [
             {
                 name: "user",
+                name_localizations: {
+                    fr: "utilisateur"
+                },
                 type: ApplicationCommandOptionType.String,
-                description: "Mention ou ID de l'utilisateur.",
+                description: "Mention or ID of the user.",
+                description_localizations: {
+                    fr: "Mention ou ID de l'utilisateur.",
+                },
                 required: false,
             }
 

@@ -17,6 +17,9 @@ export const slash = {
     data: {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Allows you to change the language of the bot",
+        description_localizations: {
+            fr: "Permet de changer la langue du bot.",
+        },
         category: "Administration",
         permissions: ["Administrator"],
         options: [
@@ -24,6 +27,9 @@ export const slash = {
                 name: "language",
                 type: ApplicationCommandOptionType.String,
                 description: "Choose the language you want",
+                description_localizations: {
+                    fr: "Indiquer la langue souhaitée",
+                },
                 required: true,
                 choices: [
                     {name: "fr-FR", value: "fr-FR"},

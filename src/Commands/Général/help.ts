@@ -62,6 +62,9 @@ export const slash = {
     data: {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Command help",
+        description_localizations: {
+            fr: "Commande help",
+        },
         category: "Général",
         permissions: ["SendMessages"],
     }

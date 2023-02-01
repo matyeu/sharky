@@ -41,6 +41,9 @@ export const slash = {
     data: {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Redirects a message to another channel",
+        description_localizations: {
+            fr: "Redirige un message vers un autre channel",
+        },
         category: "Modération",
         permissions: ["ManageMessages"],
         cooldown: 1,
@@ -48,12 +51,18 @@ export const slash = {
             {
                 name: "message_id",
                 description: "The ID of the message to redirect",
+                description_localizations: {
+                    fr: "L'ID du message à rediriger",
+                },
                 type: ApplicationCommandOptionType.String,
                 required: true,
             },
             {
                 name: "channel",
                 description: "The lounge where to send the message",
+                description_localizations: {
+                    fr: "Le salon où envoyer le message",
+                },
                 type: ApplicationCommandOptionType.Channel,
                 required: true,
             },
