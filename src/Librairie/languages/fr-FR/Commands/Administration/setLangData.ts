@@ -1,5 +1,6 @@
 const setLangDataFR: any = {
-    CONTENT: "**Language updated!**"
+    CONTENT: "**Language updated!**",
+    LANGUAGE_ALREADY: "**La langue est déjà en %language%**"
 };
 
 

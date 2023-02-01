@@ -7,6 +7,9 @@ export default async function (client: SharkClient, interaction: CommandInteract
     const serverConfig: any = await find(interaction.guild!.id);
     const languageOption = interaction.options.get("language", true).value as string;
 
+    if (serverConfig.language === languageOption)
+        return interaction.replyErrorMessage(client, language("LANGUAGE_ALREADY").replace('%language%', languageOption), true);
+
     serverConfig.language = languageOption;
     await edit(interaction.guild!.id, serverConfig);
 
