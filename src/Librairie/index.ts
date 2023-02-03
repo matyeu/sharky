@@ -127,7 +127,7 @@ ButtonInteraction.prototype.replySuccessMessage = async function (client: SharkC
     await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
 };
 ButtonInteraction.prototype.replyErrorMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral});
 };
 ButtonInteraction.prototype.editSuccessMessage = async function (client: SharkClient, content: string) {
     await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
@@ -140,7 +140,7 @@ SelectMenuInteraction.prototype.replySuccessMessage = async function (client: Sh
     await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
 };
 SelectMenuInteraction.prototype.replyErrorMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral});
 };
 SelectMenuInteraction.prototype.editSuccessMessage = async function (client: SharkClient, content: string) {
     await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
