@@ -13,7 +13,7 @@ const client = new SharkClient({
 
 loadCommands(client);
 loadEvents(client);
-//loadButtons(client);
+loadButtons(client);
 loadSelectMenus(client);
 //loadModals(client);
 
