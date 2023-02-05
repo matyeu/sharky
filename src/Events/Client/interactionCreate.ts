@@ -79,8 +79,9 @@ export default async function (client: SharkClient, interaction: Interaction) {
         try {
             const getButton = client.buttons.get(interaction.customId.split(':')[0]);
             if (!getButton) return;
+            const languageButton = require(`../../Librairie/languages/${serverConfig.language}/${getButton.button.data.filepath}`);
             Logger.client(`The ${interaction.customId} button was used by ${interaction.user?.tag} on the ${interaction.guild?.name} server.`);
-            getButton.default(client, interaction)
+            getButton.default(client, interaction, languageButton)
         }
         catch (e) {
             return console.error(e);
