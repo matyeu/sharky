@@ -15,9 +15,15 @@ let Guild = model(
             commandes: Array,
             category: Array,
         },
+        channels: {
+            logs: {
+                sanction: String,
+            }
+        },
         modules: {
-            antibot: Boolean
-            },
+            antibot: Boolean,
+            antipub: Boolean,
+        },
         language: String
 
     })
@@ -32,8 +38,14 @@ export const def = {
         commandes: Array,
         category: Array,
     },
+    channels: {
+        logs: {
+            sanction: "",
+        }
+    },
     modules: {
         antibot: false,
+        antipub: false
     },
     language: "fr-FR"
 };

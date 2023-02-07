@@ -19,10 +19,11 @@
 ### Administration
 
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
-| ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
-| antibot       | Allow or Deny the addition of bot.   | none                        | none                  | 10secs |
-| embed         | Allows you to create and send embeds | none                        | none                  | 10secs |
-| setlang       | Allows you to change the language    | none                        | none                  | 10secs |
+| ------------- | ------------------------------------- | --------------------------- | --------------------- | ------ |
+| antibot       | Allow or Deny the addition of bot.    | none                        | none                  | 10secs |
+| antipub       | Allow or deny discord links.          | none                        | none                  | 10secs |
+| embed         | Allows you to create and send embeds. | none                        | none                  | 10secs |
+| setlang       | Allows you to change the language.    | none                        | none                  | 10secs |
 
 ### Général
 
@@ -40,9 +41,9 @@
 ### Modération
 
 | Name          | Description                            | Sub-commands                | Usage                      | Cd     |
-| ------------- | -------------------------------------- | --------------------------- | -------------------------  | ------ |
-| nuke          | Delete all messages from a room        | none                        | none                       | 1sec   |
-| redirect      | Redirects a message to another channel | none                        | \<message_id> \<channel>   | 1sec   |
+| ------------- | --------------------------------------- | --------------------------- | -------------------------  | ------ |
+| nuke          | Delete all messages from a room.        | none                        | none                       | 1sec   |
+| redirect      | Redirects a message to another channel. | none                        | \<message_id> \<channel>   | 1sec   |
 
 ### Developpement
 
