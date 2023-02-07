@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="SHARKY" src="https://cdn.discordapp.com/attachments/916446142634536981/1069360066358169720/SHARKY.png">
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="SHARKY" src="https://cdn.discordapp.com/attachments/1069357500303945911/1072584932037242971/f74026db8ac8b37421d976fd17ce9499.png">
 
 # SHARKY
 
