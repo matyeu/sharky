@@ -8,6 +8,8 @@ const helpDataEN: any = {
     DESCRIPTION_STAFF: "Have the list of staff orders",
     LABEL_GENERAL: "Command generales",
     DESCRIPTION_GENERAL: "Have the list of general command",
+    LABEL_COIN: "Corner management & command",
+    DESCRIPTION_COIN: "To have the list and the information of the command",
     TITLE_COMMAND: "The list of command",
 };
 

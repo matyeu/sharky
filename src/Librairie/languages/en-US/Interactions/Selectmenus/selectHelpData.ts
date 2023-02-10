@@ -1,12 +1,10 @@
 const selectHelpDataEN: any = {
     TITLE: "❓ Getting help",
     DESCRIPTION: "Do you need information? You've come to the right place!\nCheck out the list of topics to learn more about %client%",
-    PLACEHOLDER: "Select a topic",
-    LABEL_STAFF: "Command staff",
-    DESCRIPTION_STAFF: "Have the list of staff orders",
-    LABEL_GENERAL: "Command generales",
-    DESCRIPTION_GENERAL: "Have the list of general command",
     TITLE_COMMAND: "The list of command",
+    TITLE_COIN: "%emoji% Corner management & commande %emoji%",
+    DESCRIPTION_COIN: "> 🗨️ You earn `5 coins` for every message sent\n> 🔊 You earn `300 coins` every 15 minutes when you are in voice\n> 🎥 You earn `400 coins` when you are in stream\n> 📹 You earn `500 coins` when you activate your camera!",
+
 };
 
 

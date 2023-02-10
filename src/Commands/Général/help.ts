@@ -49,6 +49,12 @@ export default async function (client: SharkClient, interaction: CommandInteract
                         description: language("DESCRIPTION_GENERAL"),
                         emoji: "🎈",
                         value: "general",
+                    },
+                    {
+                        label: language("LABEL_COIN"),
+                        description: language("DESCRIPTION_COIN"),
+                        emoji: EMOJIS.coin,
+                        value: "coin",
                     }
                 ])
         );

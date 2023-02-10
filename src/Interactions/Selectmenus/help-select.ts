@@ -51,6 +51,19 @@ export default async function (client: SharkClient, interaction: SelectMenuInter
                     })
                 }
                 break;
+                case 'coin':
+                    embed.setTitle(language("TITLE_COIN").replace('%emoji%', client.getEmoji(EMOJIS.coin)).replace('%emoji%', client.getEmoji(EMOJIS.coin)))
+                    embed.setDescription(language("DESCRIPTION_COIN"))
+
+                 for (const category of commandFolder) {
+                     if (category !== "Economy") continue;
+
+                     embed.addFields({
+                         name: `${language("TITLE_COMMAND")} - (${client.slashCommands.filter(cmd => cmd.slash.data.category == category).map(cmd => cmd.slash.data.name).length})`,
+                         value: `\`${client.slashCommands.filter(cmd => cmd.slash.data.category == category).map(cmd => cmd.slash.data.name).join(',')}\``
+                     })
+                 }
+                    break;
             default:
                 return interaction.editErrorMessage(client, `Le topic ${interaction.values[0]} **n'existe pas**.`)
         }

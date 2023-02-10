@@ -7,6 +7,8 @@ const helpDataFR: any = {
     LABEL_STAFF: "Commandes staff",
     DESCRIPTION_STAFF: "Avoir la liste des commandes staff",
     LABEL_GENERAL: "Commandes générales",
+    LABEL_COIN: "Gestion & commandes des coins",
+    DESCRIPTION_COIN: "Avoir la liste et les informations des commandes",
     DESCRIPTION_GENERAL: "Avoir la liste des commandes générales",
 };
 
