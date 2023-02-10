@@ -2,7 +2,7 @@
 
 # SHARKY
 
-[![](https://img.shields.io/discord/983056621716512910.svg?logo=discord&colorB=7289DA)](#)
+[![](https://img.shields.io/discord/983056621716512910.svg?logo=discord&colorB=7289DA)](https://discord.gg/7XkzD75ew2)
 [![](https://img.shields.io/badge/discord.js-v14.0.0-blue.svg?logo=npm)](https://discord.js.org/)
 [![](https://img.shields.io/badge/nodejs-16.6.0-green.svg)](https://www.nodejs.org)
 
@@ -50,6 +50,7 @@
 | Name          | Description                             | Sub-commands                | Usage                      | Cd     |
 | ------------- | --------------------------------------- | --------------------------- | -------------------------  | ------ |
 | balance       | Display the balance of a user.          | none                        | none                       | 10sec  |
+| work          | Allows you to earn money while working. | none                        | none                       | 10sec  |
 
 ### Developpement
 
