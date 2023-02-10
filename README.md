@@ -40,10 +40,16 @@
 
 ### Modération
 
-| Name          | Description                            | Sub-commands                | Usage                      | Cd     |
+| Name          | Description                             | Sub-commands                | Usage                      | Cd     |
 | ------------- | --------------------------------------- | --------------------------- | -------------------------  | ------ |
 | nuke          | Delete all messages from a room.        | none                        | none                       | 1sec   |
 | redirect      | Redirects a message to another channel. | none                        | \<message_id> \<channel>   | 1sec   |
+
+### Economy
+
+| Name          | Description                             | Sub-commands                | Usage                      | Cd     |
+| ------------- | --------------------------------------- | --------------------------- | -------------------------  | ------ |
+| balance       | Display the balance of a user.          | none                        | none                       | 10sec  |
 
 ### Developpement
 
