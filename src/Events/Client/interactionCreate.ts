@@ -1,16 +1,18 @@
 import {SharkClient} from "../../Librairie";
 import {Collection, EmbedBuilder, Interaction} from "discord.js";
-import {find} from "../../Models/guild";
-import {EMBED_INFO} from "../../config";
+import {find as findClient} from "../../Models/client";
+import {find as findGuild} from "../../Models/guild";
+import {EMBED_INFO, SERVER_SUPPORT} from "../../config";
 
 const Logger = require("../../Librairie/logger");
 
 export default async function (client: SharkClient, interaction: Interaction) {
 
-    const serverConfig: any = await find(interaction.guild!.id);
+    const clientConfig: any = await findClient(SERVER_SUPPORT);
+    const serverConfig: any = await findGuild(interaction.guild!.id);
     const languageInter = require(`../../Librairie/languages/${serverConfig.language}/Events/Client/interactionData`);
 
-    const administrators = serverConfig.administrators;
+    const administrators = clientConfig.administrators;
     const member = await interaction.guild!.members.fetch(interaction.user.id);
 
     if (interaction.isCommand() && interaction.inGuild()) {
@@ -45,7 +47,7 @@ export default async function (client: SharkClient, interaction: Interaction) {
             }
             // END SYSTEM OF MAINTENANCE
 
-            if (!member.permissions.has([command.slash.data.permissions]))
+            if (!member.permissions.has([command.slash.data.permissions]) || command.slash.data.category === "Developpement" && administrators.indexOf(interaction.user.id) === -1)
                 return interaction.replyErrorMessage(client, languageInter("ERROR_PERMISSION"), true);
 
             if (!client.cooldowns.has(interaction.commandName)) client.cooldowns.set(interaction.commandName, new Collection());

@@ -1,10 +1,11 @@
 import {SharkClient} from "../../Librairie";
 import mongoose from "mongoose";
+import {find as findClient} from "../../Models/client";
 import {update as updateGuild, find as findGuild, edit as editGuild} from "../../Models/guild";
 import {update as updateEconomy} from "../../Models/economy";
 import chalk from "chalk";
 import {readdirSync} from "fs";
-import {SERVER_EMOJI} from "../../config";
+import {SERVER_EMOJI, SERVER_SUPPORT} from "../../config";
 
 const Logger = require("../../Librairie/logger");
 const synchronizeSlashCommands = require('discord-sync-commands-v2');
@@ -39,6 +40,8 @@ export default async function (client: SharkClient) {
 
     mongoose.Promise = global.Promise;
     console.log(chalk.grey('--------------------------------'));
+
+    await findClient(SERVER_SUPPORT)
 
 
     for (let guild of client.guilds.cache.map(guild => guild)) {
