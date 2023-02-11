@@ -1,4 +1,4 @@
-export const SERVER_SUPPORT = "1069357499146313920";
+export const SERVER_SUPPORT = "1071891755911368806";
 export const SERVER_EMOJI = "1069264231070978088";
 
 export const LINK_SUPPORT = "https://discord.gg/ZXmGtgzhfR";
