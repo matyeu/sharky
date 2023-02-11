@@ -1,4 +1,5 @@
 const interactionDataEN: any = {
+    COMMAND_NOTFOUND: "The **%command%** command was not found",
     TITLE: "Maintenance in progress",
     FOOTER: "Please try again in a few minutes. During maintenance, all %client% automated systems remain functional.",
     DESCRIPTION_BOT: "**%user%**, a maintenance operation is currently in progress on **%client%**.",

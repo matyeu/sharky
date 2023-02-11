@@ -16,7 +16,7 @@ export default async function (client: SharkClient, interaction: Interaction) {
     if (interaction.isCommand() && interaction.inGuild()) {
         try {
             let command = client.slashCommands.get(interaction.commandName);
-            if (!command) return interaction.replyErrorMessage(client, `La commande **${interaction.commandName}** n'a pas été trouver`, true);
+            if (!command) return interaction.replyErrorMessage(client, languageInter("COMMAND_NOTFOUND").replace('%command%', interaction.commandName), true);
 
             const category = command.slash.data.category
             const languageCommand = require(`../../Librairie/languages/${serverConfig.language}/Commands/${category}/${interaction.commandName}Data`);
