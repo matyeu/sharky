@@ -1,7 +1,7 @@
 import {SharkClient} from "../../../Librairie";
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, ButtonInteraction, EmbedBuilder, SelectMenuInteraction, Snowflake} from "discord.js";
 import {find, edit} from "../../../Models/embed";
-import {EMOJIS, EMBED_INFO, IDLE_BUTTON, EMBED_ERROR} from "../../../config";
+import {EMOJIS, EMBED_INFO, IDLE_BUTTON, EMBED_ERROR, EMBED_GENERAL} from "../../../config";
 
 export default async function (client: SharkClient, interaction: SelectMenuInteraction, language: any) {
 
@@ -250,7 +250,7 @@ export async function embedSend(guild: Snowflake, member: Snowflake, inter: Sele
     const embedEnd = new EmbedBuilder()
 
     for (const embed of embedConfig.embeds) {
-        embedEnd.setColor(embed.color ? embed.color : null)
+        embedEnd.setColor(embed.color ? embed.color : EMBED_GENERAL)
             .setThumbnail(embed.thumbail ? embed.thumbail : null)
             .setAuthor({
                 name: embed.author.name ? embed.author.name : null,
