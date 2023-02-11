@@ -8,7 +8,7 @@ import {
     EmbedBuilder
 } from "discord.js";
 import {find} from "../../../Models/embed";
-import {EMBED_ERROR, EMBED_INFO, EMOJIS, IDLE_BUTTON} from "../../../config";
+import {EMBED_ERROR, EMBED_GENERAL, EMBED_INFO, EMOJIS, IDLE_BUTTON} from "../../../config";
 
 export default async function (client: SharkClient, interaction: ButtonInteraction, language: any) {
 
@@ -79,7 +79,7 @@ export default async function (client: SharkClient, interaction: ButtonInteracti
         const embedSend = new EmbedBuilder()
 
         for (const embed of embedConfig.embeds) {
-            embedSend.setColor(embed.color ? embed.color : null)
+            embedSend.setColor(embed.color ? embed.color : EMBED_GENERAL)
             .setThumbnail(embed.thumbail ? embed.thumbail : null)
             .setAuthor({name: embed.author.name ? embed.author.name : null, iconURL: embed.author.iconURL ? embed.author.iconURL : null})
             .setTitle(embed.title ? embed.title : null)
