@@ -44,6 +44,7 @@
 | Name          | Description                             | Sub-commands                | Usage                      | Cd     |
 | ------------- | --------------------------------------- | --------------------------- | -------------------------  | ------ |
 | nuke          | Delete all messages from a room.        | none                        | none                       | 1sec   |
+| peace         | Lock a channel for 1 minute.            |none                         | none                       | 1sec   |
 | redirect      | Redirects a message to another channel. | none                        | \<message_id> \<channel>   | 1sec   |
 
 ### Economy
