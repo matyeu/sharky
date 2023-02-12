@@ -99,5 +99,14 @@ export default async function (client: SharkClient, interaction: Interaction) {
         catch (e) {
             return console.error(e);
         }
+    } else if (interaction.isModalSubmit()) {
+        try {
+            const getModal = client.modals.get(interaction.customId.split(':')[0]);
+            const languageModal = require(`../../Librairie/languages/${serverConfig.language}/${getModal.modal.data.filepath}`);
+            Logger.client(`The ${interaction.customId} modal was used by ${interaction.user.tag} on the ${interaction.guild?.name} server.`);
+            await getModal.default(client, interaction, languageModal);
+        } catch (err) {
+            console.error(err)
+        }
     }
 }
