@@ -18,11 +18,13 @@ let Guild = model(
         channels: {
             logs: {
                 sanction: String,
+                message: String,
             }
         },
         modules: {
             antibot: Boolean,
             antipub: Boolean,
+            logs: Boolean
         },
         captcha: {
             state: Boolean,
@@ -49,11 +51,13 @@ export const def = {
     channels: {
         logs: {
             sanction: "",
+            message: "",
         }
     },
     modules: {
         antibot: false,
-        antipub: false
+        antipub: false,
+        logs: false
     },
     captcha: {
         state: false,
