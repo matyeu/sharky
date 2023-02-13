@@ -16,7 +16,9 @@ export default async function (client: SharkClient, interaction: ButtonInteracti
     if (!member?.roles.cache.has(role.id)) {
         await member?.roles.add(role, `${member.user.username} has accepted the server's rules.`);
         const text = `TEXT_${Math.floor((Math.random() * 14) + 1)}`;
-        await client.getChannel(<Guild>member!.guild, serverConfig.captcha.channelGeneral, {content: `❗️ ➜ ${language(text).replace('%user%', member)}`});
+
+        if (serverConfig.captcha.general)
+            await client.getChannel(<Guild>member!.guild, serverConfig.captcha.channelGeneral, {content: `❗️ ➜ ${language(text).replace('%user%', member)}`});
     }
 
 
