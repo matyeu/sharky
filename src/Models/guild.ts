@@ -24,6 +24,14 @@ let Guild = model(
             antibot: Boolean,
             antipub: Boolean,
         },
+        captcha: {
+            state: Boolean,
+            general: Boolean,
+            channel: String,
+            channelGeneral: String,
+            role: String,
+            message: String
+        },
         language: String
 
     })
@@ -31,7 +39,7 @@ let Guild = model(
 
 export const def = {
     guildID: "",
-    administrators: Array,
+    administrators: [],
     maintenance: {
         state: false,
         reason: "",
@@ -46,6 +54,14 @@ export const def = {
     modules: {
         antibot: false,
         antipub: false
+    },
+    captcha: {
+        state: false,
+        general: false,
+        channel: "",
+        channelGeneral: "",
+        role: "",
+        message: "🇫🇷 Pour avoir accès au serveur, je vous invite à cliquer sur le bouton sous le message.\n\n🇺🇸 To access the server, click on the button in the message."
     },
     language: "fr-FR"
 };

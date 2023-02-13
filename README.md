@@ -22,6 +22,7 @@
 | ------------- | ------------------------------------- | --------------------------- | --------------------- | ------ |
 | antibot       | Allow or Deny the addition of bot.    | none                        | none                  | 10secs |
 | antipub       | Allow or deny discord links.          | none                        | none                  | 10secs |
+| captcha       | Command captcha.                      | none                        | none                  | 10secs |
 | embed         | Allows you to create and send embeds. | none                        | none                  | 10secs |
 | emoji         | Command emoji.                        | create, info, remove        | \<emoji>              | 10secs |
 | setlang       | Allows you to change the language.    | none                        | none                  | 10secs |
