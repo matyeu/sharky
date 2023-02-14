@@ -39,6 +39,8 @@ export default async function (client: SharkClient) {
     })
 
     mongoose.Promise = global.Promise;
+
+    if (process.env.ENABLED === "ON") require("../../Librairie/dashboard")(client);
     console.log(chalk.grey('--------------------------------'));
 
     await findClient(SERVER_SUPPORT)
