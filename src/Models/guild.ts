@@ -19,12 +19,14 @@ let Guild = model(
             logs: {
                 sanction: String,
                 message: String,
+                modLog: String,
             }
         },
         modules: {
             antibot: Boolean,
             antipub: Boolean,
-            logs: Boolean
+            logs: Boolean,
+            sanctions: Boolean
         },
         captcha: {
             state: Boolean,
@@ -34,7 +36,8 @@ let Guild = model(
             role: String,
             message: String
         },
-        language: String
+        language: String,
+        sanctionsCase: Number,
 
     })
 );
@@ -52,12 +55,14 @@ export const def = {
         logs: {
             sanction: "",
             message: "",
+            modLog: "",
         }
     },
     modules: {
         antibot: false,
         antipub: false,
-        logs: false
+        logs: false,
+        sanctions: false,
     },
     captcha: {
         state: false,
@@ -67,7 +72,8 @@ export const def = {
         role: "",
         message: "🇫🇷 Pour avoir accès au serveur, je vous invite à cliquer sur le bouton sous le message.\n\n🇺🇸 To access the server, click on the button in the message."
     },
-    language: "fr-FR"
+    language: "fr-FR",
+    sanctionsCase: 0
 };
 
 export async function create(id: Snowflake) {
