@@ -1,4 +1,5 @@
 const balanceDataFR: any = {
+    MEMBER_NOTFOUND: "Cet utilisateur **n'existe pas** ou **n'a pas été trouvé**.",
     DEFAULT: "**La sous-commande sélectionnée n'a pas été trouver**",
     AUTHOR: "Balance du membre : %user%",
     MONEY: "Liquide",

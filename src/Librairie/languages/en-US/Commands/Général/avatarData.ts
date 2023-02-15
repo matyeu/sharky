@@ -1,4 +1,5 @@
 const avatarDataEN: any = {
+    MEMBER_NOTFOUND: "This user **does not exist** or **was not found**.",
     DESCRIPTION: "Avatar **Discord** from %user%",
 };
 

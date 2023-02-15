@@ -5,8 +5,10 @@ import {EMBED_GENERAL, FOOTER,} from "../../config";
 export default async function (client: SharkClient, interaction: CommandInteraction, language: any) {
 
     const memberOption: any = interaction.options.get("user", false);
-    const memberReplace = memberOption ? memberOption.value.replace("<@", "").replace(">", "") : interaction.user
-    const member = await interaction.guild!.members.fetch(memberReplace);
+    const memberReplace = memberOption ? memberOption.value.replace("<@", "").replace(">", "") : interaction.user.id
+    const member = await interaction.guild!.members.cache.get(memberReplace);
+
+    if (!member) return interaction.replyErrorMessage(client, language("MEMBER_NOTFOUND"), true);
 
     const embed = new EmbedBuilder()
         .setColor(EMBED_GENERAL)

@@ -1,4 +1,5 @@
 const balanceDataEN: any = {
+    MEMBER_NOTFOUND: "This user **does not exist** or **was not found**.",
     DEFAULT: "**The selected subcommand has not been found**",
     AUTHOR: "Member scale : %user%",
     MONEY: "Liquid",

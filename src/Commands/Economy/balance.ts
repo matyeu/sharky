@@ -12,8 +12,10 @@ export default async function (client: SharkClient, interaction: CommandInteract
     switch (interaction.options.getSubcommand(false)) {
         case 'user':
             const memberOption: any = interaction.options.get("user", false)!;
-            const memberReplace = memberOption ? memberOption.value.replace("<@", "").replace(">", "") : interaction.user
-            const member = await interaction.guild!.members.fetch(memberReplace);
+            const memberReplace = memberOption ? memberOption.value.replace("<@", "").replace(">", "") : interaction.user.id
+            const member = await interaction.guild!.members.cache.get(memberReplace);
+
+            if (!member) return interaction.replyErrorMessage(client, language("MEMBER_NOTFOUND"), true);
 
             const memberConfig: any = await find(member.guild!.id, member.user.id);
             const transfer: any = interaction.options.get("transfer", false);
