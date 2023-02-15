@@ -31,7 +31,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
 export const slash = {
   data: {
-      name: "invite",
+      name: __filename.slice(__dirname.length + 1, __filename.length - 3),
       description: "Allows you to display the number of prompts for a user.",
       description_localizations: {
         fr: "Permet d'afficher le nombre d'invite d'un utilisateur."
