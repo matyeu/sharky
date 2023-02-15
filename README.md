@@ -57,6 +57,13 @@
 | balance       | Display the balance of a user.          | none                        | none                       | 10sec  |
 | work          | Allows you to earn money while working. | none                        | none                       | 10sec  |
 
+### Invite
+
+| Name          | Description                             | Sub-commands                | Usage                      | Cd     |
+| ------------- | --------------------------------------- | --------------------------- | -------------------------  | ------ |
+| invite        | Allows you to display the invitations   | none                        | (user)                     | 10sec  |
+
+
 ### Developpement
 
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |

@@ -2,6 +2,7 @@ import {SharkClient} from "../../Librairie";
 import mongoose from "mongoose";
 import {find as findClient} from "../../Models/client";
 import {update as updateGuild, find as findGuild, edit as editGuild} from "../../Models/guild";
+import {update as updateMembers} from "../../Models/members";
 import {update as updateEconomy} from "../../Models/economy";
 import chalk from "chalk";
 import {readdirSync} from "fs";
@@ -45,6 +46,11 @@ export default async function (client: SharkClient) {
 
     await findClient(SERVER_SUPPORT)
 
+    client.guilds.cache.forEach(async (guild) => {
+        const firstInvite = await guild.invites.fetch();
+        client.invite.set(guild.id, new Map(firstInvite.map((invite) => [invite.code, invite.uses])));
+    });
+
 
     for (let guild of client.guilds.cache.map(guild => guild)) {
         if (guild.id === SERVER_EMOJI) continue;
@@ -56,6 +62,7 @@ export default async function (client: SharkClient) {
             if (member.user.bot) continue;
             if (member.guild.id === SERVER_EMOJI) continue;
 
+            await updateMembers(guild.id, member.user.id);
             await updateEconomy(guild.id, member.user.id);
 
         }
