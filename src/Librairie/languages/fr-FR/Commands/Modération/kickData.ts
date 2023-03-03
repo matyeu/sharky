@@ -6,6 +6,7 @@ const kickDataFR: any = {
   ADDFIELD_DATE: "📅 Date",
   ERROR_PERMISSION: "**Vous n'avez pas l'habilitation d'utiliser cet interaction !**",
   DESCRIPTION_MODLOG: "**Membre:** \`%user%\` (%userId%)\n**Action:** Kick\n**Raison:** %reason%",
+  COMMAND_CANCEL: "Commande anulée",
   CASE: "Cas %number%",
   NEW_DESCRIPTION_EMBED: "%staff% a kick **%user%** pour la raison suivante : **%reason%**",
   TITLE_EMBEDUSER: "%client% Protect - Kick",

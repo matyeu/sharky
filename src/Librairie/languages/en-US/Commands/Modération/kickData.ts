@@ -6,6 +6,7 @@ const kickDataEN: any = {
   ADDFIELD_DATE: "📅 Date",
   ERROR_PERMISSION: "**You do not have the authority to use this interaction!**",
   DESCRIPTION_MODLOG: "**Member:** \`%user%\` (%userId%)\n**Action:** Kick\n**Reason:** %reason%",
+  COMMAND_CANCEL: "Commande cancel",
   CASE: "Case %number%",
   NEW_DESCRIPTION_EMBED: "%staff% a kick **%user%** for the following reason: **%reason%**",
   TITLE_EMBEDUSER: "%client% Protect - Kick",

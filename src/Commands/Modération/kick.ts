@@ -52,7 +52,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
                 .setStyle(ButtonStyle.Danger))
         .addComponents(
             new ButtonBuilder()
-                .setCustomId(`cancel:${memberStaff.user.id}`)
+                .setCustomId(`cancelKick`)
                 .setLabel("Cancel")
                 .setStyle(ButtonStyle.Primary)
         );
@@ -65,6 +65,18 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
       if (!memberStaff.permissions.has(["KickMembers"]))
       return inter.replyErrorMessage(client, language("ERROR_PERMISSION"), true);
+
+      if (inter.customId === "cancelKick") {
+        const buttonEnd = new ActionRowBuilder<ButtonBuilder>()
+          .addComponents(
+              new ButtonBuilder()
+                  .setCustomId(`buttonCancel`)
+                  .setDisabled(true)
+                  .setLabel(language("COMMAND_CANCEL"))
+                  .setStyle(ButtonStyle.Secondary))
+
+      return inter.update({components: [buttonEnd]});
+      }
 
       serverConfig.sanctionsCase++
       await serverConfig.save();
