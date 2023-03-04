@@ -53,6 +53,7 @@
 | purge         | Delete messages.                        |messages, user               | \<action> (value)          | 1sec   |
 | redirect      | Redirects a message to another channel. | none                        | \<message_id> \<channel>   | 1sec   |
 | kick          | Kick a user.                            |none                         | \<user> \<reason>          | 1sec   |
+| warn          | Warn or unwarn a user.                  |user, server                 | \<action> (value)          | 1sec   |
 
 ### Economy
 
