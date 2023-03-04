@@ -4,13 +4,14 @@ import {
     ClientOptions,
     Collection,
     CommandInteraction,
-    Guild, EmbedBuilder,
+    Guild, GuildMember,
     BaseMessageOptions, ModalSubmitInteraction, SelectMenuInteraction,
     Snowflake,
     TextChannel
 } from 'discord.js';
 import * as fs from "fs";
-import {EMOJIS} from "../config";
+import { EMOJIS } from "../config";
+import { find as findEconomy } from "../Models/economy";
 
 const Logger = require("./logger");
 
@@ -111,55 +112,55 @@ declare module "discord.js" {
 }
 
 CommandInteraction.prototype.replySuccessMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral });
 };
 CommandInteraction.prototype.replyErrorMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral });
 };
 CommandInteraction.prototype.editSuccessMessage = async function (client: SharkClient, content: string) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}` });
 };
 CommandInteraction.prototype.editErrorMessage = function (client: SharkClient, content: string) {
-    return this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
+    return this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}` });
 };
 
 ButtonInteraction.prototype.replySuccessMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral });
 };
 ButtonInteraction.prototype.replyErrorMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral });
 };
 ButtonInteraction.prototype.editSuccessMessage = async function (client: SharkClient, content: string) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}` });
 };
 ButtonInteraction.prototype.editErrorMessage = async function (client: SharkClient, content: string) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}` });
 };
 
 SelectMenuInteraction.prototype.replySuccessMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral });
 };
 SelectMenuInteraction.prototype.replyErrorMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral });
 };
 SelectMenuInteraction.prototype.editSuccessMessage = async function (client: SharkClient, content: string) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}` });
 };
 SelectMenuInteraction.prototype.editErrorMessage = async function (client: SharkClient, content: string) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}` });
 };
 
 ModalSubmitInteraction.prototype.replySuccessMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}`, ephemeral: ephemeral });
 };
 ModalSubmitInteraction.prototype.replyErrorMessage = async function (client: SharkClient, content: string, ephemeral: boolean) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.error)} | ${content}`, ephemeral: ephemeral });
 };
 ModalSubmitInteraction.prototype.editSuccessMessage = async function (client: SharkClient, content: string) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.succes)} | ${content}`});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.succes)} | ${content}` });
 };
 ModalSubmitInteraction.prototype.editErrorMessage = async function (client: SharkClient, content: string) {
-    await this.reply({content: `${client.getEmoji(EMOJIS.error)} | ${content}`});
+    await this.reply({ content: `${client.getEmoji(EMOJIS.error)} | ${content}` });
 };
 
 export function getFilesRecursive(directory: string, aFiles?: string[]) {
@@ -228,3 +229,21 @@ export function msToTime(ms: any) {
     else return days + " Days"
 
 };
+
+export async function giveCoihs(client: SharkClient, guild: Snowflake, member: Snowflake, amount: Number) {
+    const economyConfig: any = await findEconomy(guild!, member);
+
+    await client.guilds.cache.forEach(async (guild) => {
+        guild.channels.cache.forEach(async (channel) => {
+            if (channel.type === 2) {
+                channel.members.forEach(async (member) => {
+
+                    if (!member.user.bot && member.voice.channel) {
+                        economyConfig.money += amount
+                        economyConfig.save();
+                    }
+                });
+            }
+        });
+    });
+}
