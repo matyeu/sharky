@@ -1,13 +1,14 @@
 import { GuildMember } from "discord.js";
 import { SharkClient } from "../../Librairie";
-import { create, find, edit } from "../../Models/members";
+import { create as createMember, find as findMember, edit as editMember } from "../../Models/members";
+import { create as createEconomy } from "../../Models/economy";
 
 export default async function (client: SharkClient, newMember: GuildMember) {
 
   if (newMember.user.bot) return;
 
-  await create(newMember.guild.id, newMember.user.id);
-
+  await createMember(newMember.guild.id, newMember.user.id);
+  await createEconomy(newMember.guild.id, newMember.user.id);
 
   newMember.guild.invites.fetch().then(async newInvite => {
 
@@ -15,10 +16,10 @@ export default async function (client: SharkClient, newMember: GuildMember) {
     const invite = newInvite.find(i => i.uses! > oldInvite.get(i.code));
     const memberInvite = newMember.guild.members.cache.get(invite!.inviter!.id)!;
 
-    const memberConfig: any = await find(memberInvite.guild!.id, memberInvite.id);
+    const memberConfig: any = await findMember(memberInvite.guild!.id, memberInvite.id);
 
     memberConfig.invitations.inviteUser++;
-    await edit(memberInvite.guild.id, memberInvite.id, memberConfig);
+    await editMember(memberInvite.guild.id, memberInvite.id, memberConfig);
 
 
   });
