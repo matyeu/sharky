@@ -27,7 +27,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
 export const slash = {
     data: {
-        name: "lock",
+        name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         description: "Lock or unlock a channel.",
         description_localizations: {
             fr: "Lock ou unlock un channel."

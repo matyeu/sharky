@@ -155,7 +155,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
 export const slash = {
   data: {
-      name: "kick",
+      name: __filename.slice(__dirname.length + 1, __filename.length - 3),
       description: "Kick a server user.",
       description_localizations: {
           fr: "Kick un utilisateur du serveur."
