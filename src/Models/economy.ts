@@ -9,9 +9,13 @@ let Economy = model("Economy", new Schema({
     userID: String,
     money: Number,
     bank: Number,
-    daily: Date,
-    crime: Date,
-    work: Date,
+    cooldowns: {
+        daily: Date,
+        crime: Date,
+        work: Date,
+        rob: Date,
+        lastRob: Date,
+    }
 }));
 
 export const def = {
@@ -19,9 +23,13 @@ export const def = {
     userID: "",
     money: 0,
     bank: 0,
-    daily: 0,
-    crime: 0,
-    work: 0,
+    cooldowns: {
+        daily: 0,
+        crime: 0,
+        work: 0,
+        rob: 0,
+        lastRob: 0,
+    }
 };
 
 export async function create(guildID: Snowflake, userID: Snowflake) {
