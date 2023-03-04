@@ -1,4 +1,4 @@
-const purgeDataFR = {
+const purgeDataFR: any = {
     NUMBER_BETWEEN: "Vous devez spécifier un nombre entre **1** et **100**.",
     MESSAGE_DELETE_SIZE: "**%messageDelete% messages** ont été supprimés.",
     BULK_DELETE: "**Vous ne pouvez pas** supprimer les messages plus vieux que **14 jours**.",
@@ -9,7 +9,6 @@ const purgeDataFR = {
 };
 
 const translatePurgeFR = (key: string | number, ...args: any[]) => {
-    //@ts-ignore
     const translation = purgeDataFR[key];
     if(typeof translation === "function") return translation(args);
     else return translation;
