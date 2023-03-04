@@ -7,8 +7,8 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
     const economyConfig: any = await find(interaction.guild!.id, interaction.user.id);
 
-    const workCd = 1.44e+7;
-    const lastWork = await economyConfig.work;
+    const workCd = 1.44e+7; // 4h
+    const lastWork = await economyConfig.cooldowns.work;
 
     if (lastWork !== null && workCd - (Date.now() - lastWork) > 0) {
         const cdTime = workCd - (Date.now() - lastWork);
@@ -19,7 +19,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
     const number_random = Math.floor((Math.random() * 100) + 20);
 
     economyConfig.money += number_random;
-    economyConfig.work = Date.now();
+    economyConfig.cooldowns.work = Date.now();
 
     const text = `TEXT_${Math.floor((Math.random() * 9) + 1)}`;
 
