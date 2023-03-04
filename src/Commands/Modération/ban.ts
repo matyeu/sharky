@@ -111,7 +111,8 @@ export default async function ( client: SharkClient, interaction: CommandInterac
           const channelPublic = <TextChannel>interaction.guild!.channels.cache.find(channelPublic => channelPublic.id === serverConfig.channels.logs.modLog);
           let reference: string = "";
 
-          if (channelPublic) await channelPublic.send({embeds: [embedMod]}).then(async (message: Message) => {reference = message.id});
+          if (channelPublic && serverConfig.modules.sanctions) 
+          await channelPublic.send({embeds: [embedMod]}).then(async (message: Message) => {reference = message.id});
           await createBan(interaction.guild!.id, userReplace, interaction.user.id, reason, Date.now(), reference, serverConfig.sanctionsCase);
 
           if (memberGuild) {
