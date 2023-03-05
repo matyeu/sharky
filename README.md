@@ -40,6 +40,7 @@
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
 | ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
 | crash         | Allows you to play crash.            | none                        | \<bet>                | 10secs |
+| coinflip      | Allows you to play coinflip.         | none                        | \<bet>                | 10secs |
 
 ### Modération
 
