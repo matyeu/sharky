@@ -48,6 +48,7 @@
 | ban           | Ban or unban a user.                    |none                         | \<user> \<reason> (time)   | 1sec   |
 | lock          | Lock or unlock a channel.               |none                         | <\state>                   | 1sec   |
 | lock          | Lock or unlock a channel.               |none                         | <\state>                   | 1sec   |
+| mute          | Mute or unmute a user.                  |none                         | \<user> \<reason> (time)   | 1sec   |
 | nuke          | Delete all messages from a room.        | none                        | none                       | 1sec   |
 | peace         | Lock a channel for 1 minute.            |none                         | none                       | 1sec   |
 | purge         | Delete messages.                        |messages, user               | \<action> (value)          | 1sec   |
