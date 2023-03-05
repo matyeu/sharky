@@ -18,6 +18,11 @@ export const FOOTER_TICKET = "SHARKY - Tickets";
 
 export const IDLE_BUTTON = 60000;
 
+export const IMAGES = {
+    coinflip_face: "https://cdn.discordapp.com/attachments/975827779968970772/980822112224825354/KOYE_SPIN_FACE.gif",
+    coinflip_tail: "https://cdn.discordapp.com/attachments/975827779968970772/980822049624821760/KOYE_SPIN_PILE.gif"
+}
+
 export const EMOJIS = {
     admin: "1069679293149491220",
     succes: "1069364627252711564",
@@ -45,4 +50,6 @@ export const EMOJIS = {
     afk: "1071143149453447220",
     dnd: "1071143166713020426",
     offline: "1071143139714289724",
+    face: "1081981619612692551",
+    tail: "1081981620929708042"
 }
