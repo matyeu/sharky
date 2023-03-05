@@ -20,6 +20,7 @@ export const def = {
     memberStaff: "",
     reason: "",
     reference: "",
+    case: 0,
     date: 0,
 };
 
