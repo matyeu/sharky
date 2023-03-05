@@ -130,7 +130,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
               new ButtonBuilder()
                 .setCustomId(`buttonInfo`)
                 .setDisabled(true)
-                .setLabel(language("LABEL_BUTTON_SERVER").replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
+                .setLabel(language("LABEL_BUTTON_USER").replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
                 .setStyle(ButtonStyle.Secondary))
 
           await memberGuild.send({ embeds: [embedUser] });
@@ -145,7 +145,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
                 new ButtonBuilder()
                   .setCustomId(`buttonInfo`)
                   .setDisabled(true)
-                  .setLabel(language("LABEL_BUTTON_USER").replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
+                  .setLabel(language("LABEL_BUTTON_SERVER").replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
                   .setStyle(ButtonStyle.Secondary))
 
             await Logger.warn(`${memberGuild ? memberGuild.user.tag : "User"} blocks his private messages, so he did not receive the reason for his warn.`);
