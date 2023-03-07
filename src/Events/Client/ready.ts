@@ -76,7 +76,7 @@ export default async function (client: SharkClient) {
                     rankUser++
                     let userLevel: any = await findLevel(guild!.id, e.userID);
                     userLevel.rank = rankUser;
-                    await editLevel(guild!.id, e.userID, userLevel).then(e => {console.log(e)});
+                    await editLevel(guild!.id, e.userID, userLevel);
                 }
             }, 1.8e+6); // 30 m
 
