@@ -4,7 +4,7 @@ import {find as findClient} from "../../Models/client";
 import {update as updateGuild, find as findGuild, edit as editGuild} from "../../Models/guild";
 import {update as updateMembers} from "../../Models/members";
 import {update as updateEconomy} from "../../Models/economy";
-import {update as updateLevel } from "../../Models/level";
+import {update as updateLevel, find as findLevel, findServer as findLevels, edit as editLevel } from "../../Models/level";
 import chalk from "chalk";
 import {readdirSync} from "fs";
 import {SERVER_EMOJI, SERVER_SUPPORT} from "../../config";
@@ -66,6 +66,19 @@ export default async function (client: SharkClient) {
             await updateMembers(guild.id, member.user.id);
             await updateEconomy(guild.id, member.user.id);
             await updateLevel(guild.id, member.user.id);
+
+            setInterval(async () => {
+                const levelServerConfig: any = await findLevels(guild!.id)
+                const sortedLevels = levelServerConfig.sort((a: any) => a.community.level);
+                let rankUser = 0;
+
+                for (const e of sortedLevels) {
+                    rankUser++
+                    let userLevel: any = await findLevel(guild!.id, e.userID);
+                    userLevel.rank = rankUser;
+                    await editLevel(guild!.id, e.userID, userLevel).then(e => {console.log(e)});
+                }
+            }, 1.8e+6); // 30 m
 
         }
 

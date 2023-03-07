@@ -2,6 +2,7 @@ import {SharkClient} from "../../Librairie";
 import {EmbedBuilder, Message} from "discord.js";
 import {find as findGuild} from "../../Models/guild";
 import {find as findEconomy, edit as editEconomy} from "../../Models/economy";
+import {addExperience} from "../../Models/level";
 import {SERVER_EMOJI, EMBED_CLOSE, FOOTER_MODERATION} from "../../config";
 
 const Logger = require('../../Librairie/logger');
@@ -16,9 +17,6 @@ export default async function (client: SharkClient, message: Message) {
     const economyConfig: any = await findEconomy(message.guild!.id, message.author.id);
     const messageLang = require(`../../Librairie/languages/${serverConfig.language}/Events/Message/messageCreateData`);
     const member = message.member!;
-
-    economyConfig.money += 5;
-    await editEconomy(message.guild!.id, member.id, economyConfig)
 
     if (serverConfig.modules.antipub) {
         if (message.content.includes('discord.gg/') || message.content.includes('discordapp/invite')) {
@@ -41,4 +39,12 @@ export default async function (client: SharkClient, message: Message) {
 
         }
     }
+
+    const expCd = Math.floor(Math.random() * 19) + 1;
+    const expToAdd = Math.floor(Math.random() * 25) + 10;
+
+    if (expCd >= 10 && expCd <= 15) await addExperience(message, message.author.id, expToAdd);
+
+    economyConfig.money += 5;
+    await editEconomy(message.guild!.id, member.id, economyConfig)
 }
