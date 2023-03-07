@@ -35,6 +35,7 @@
 | help          | Command help.                          | none                        | none                  | 10secs |
 | members       | Displays the number of members.        | none                        | none                  | 10secs |
 | rank          | Get the rank of a user.                | none                        | (user)                | 10secs |
+| rankings      | Displays community rankings.           | none                        | \<ranking>            | 10secs |
 | someone       | Displays a member's information.       | none                        | none                  | 10secs |
 
 ### Games
