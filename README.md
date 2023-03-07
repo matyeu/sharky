@@ -59,11 +59,12 @@
 
 ### Economy
 
-| Name          | Description                             | Sub-commands                | Usage                      | Cd     |
-| ------------- | --------------------------------------- | --------------------------- | -------------------------  | ------ |
-| balance       | Display the balance of a user.          | none                        | none                       | 10sec  |
-| rob           | Allows you to steal money from a user.  | none                        | \<user>                    | 10sec  |
-| work          | Allows you to earn money while working. | none                        | none                       | 10sec  |
+| Name          | Description                              | Sub-commands                | Usage                      | Cd     |
+| ------------- | ---------------------------------------- | --------------------------- | -------------------------  | ------ |
+| balance       | Display the balance of a user.           | none                        | none                       | 10sec  |
+| daily         | Allows you to get your daily money back. | none                        | none                       | 10sec  |
+| rob           | Allows you to steal money from a user.   | none                        | \<user>                    | 10sec  |
+| work          | Allows you to earn money while working.  | none                        | none                       | 10sec  |
 
 ### Invite
 
