@@ -22,6 +22,10 @@ let Guild = model(
                 modLog: String,
             }
         },
+        levels: {
+            card: String,
+            cardColor: String,
+          },
         modules: {
             antibot: Boolean,
             antipub: Boolean,
@@ -58,6 +62,10 @@ export const def = {
             modLog: "",
         }
     },
+    levels: {
+        card: "https://cdn.discordapp.com/attachments/1074083055494500533/1082718326641405993/rankCard.jpg",
+        cardColor: "#9fdafc",
+      },
     modules: {
         antibot: false,
         antipub: false,
