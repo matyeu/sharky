@@ -1,7 +1,7 @@
 import { ApplicationCommandOptionType, AttachmentBuilder, CommandInteraction } from "discord.js";
 import { SharkClient } from "../../Librairie";
 import { find as findGuild } from "../../Models/guild";
-import { find as findLevel, progression, edit as editLevel } from "../../Models/level";
+import { find as findLevel, progression } from "../../Models/level";
 import canvacord from "canvacord";
 
 export default async function (client: SharkClient, interaction: CommandInteraction, language: any) {
@@ -61,7 +61,6 @@ export const slash = {
                 description_localizations: {
                     fr: "Mention ou ID de l'utilisateur.",
                 },
-                required: false,
             }
 
         ],
