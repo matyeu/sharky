@@ -29,12 +29,13 @@
 
 ### Général
 
-| Name          | Description                          | Sub-commands                | Usage                 | Cd     |
-| ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
-| avatar        | Displays a user's avatar.            | none                        | (user)                | 10secs |
-| help          | Command help.                        | none                        | none                  | 10secs |
-| members       | Displays the number of members.      | none                        | none                  | 10secs |
-| rank          | Get the rank of a user.              | none                        | (user)                | 10secs |
+| Name          | Description                            | Sub-commands                | Usage                 | Cd     |
+| ------------- | -------------------------------------- | --------------------------- | --------------------- | ------ |
+| avatar        | Displays a user's avatar.              | none                        | (user)                | 10secs |
+| help          | Command help.                          | none                        | none                  | 10secs |
+| members       | Displays the number of members.        | none                        | none                  | 10secs |
+| rank          | Get the rank of a user.                | none                        | (user)                | 10secs |
+| someone       | Displays a member's information.       | none                        | none                  | 10secs |
 
 ### Games
 

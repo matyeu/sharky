@@ -15,7 +15,11 @@ const someoneataFR: any = {
     DISCRIMINATOR: "Discriminateu r",
     ID: "ID : ",
     CREATED: "Créé : ",
-    JOIN: "Rejoins :"
+    JOIN: "Rejoins :",
+    BADGES: "Badges Discord :",
+    BUTTON_LABEL: "Nouvelle recherche",
+    ERROR_PERMISSION: "**Vous n'avez pas l'habilitation d'utiliser cet interaction !**",
+    COLLECTOR_END: "Fin du temps imparti pour cet interaction.",
 };
 
 
@@ -25,4 +29,4 @@ const translateSomeoneDataFR = (key: string | number, ...args: any[]) => {
     else return translation;
 };
 
-module.exports = translateRankDataFR;
+module.exports = translateSomeoneDataFR;
