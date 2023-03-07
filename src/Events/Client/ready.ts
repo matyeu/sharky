@@ -4,6 +4,7 @@ import {find as findClient} from "../../Models/client";
 import {update as updateGuild, find as findGuild, edit as editGuild} from "../../Models/guild";
 import {update as updateMembers} from "../../Models/members";
 import {update as updateEconomy} from "../../Models/economy";
+import {update as updateLevel } from "../../Models/level";
 import chalk from "chalk";
 import {readdirSync} from "fs";
 import {SERVER_EMOJI, SERVER_SUPPORT} from "../../config";
@@ -64,6 +65,7 @@ export default async function (client: SharkClient) {
 
             await updateMembers(guild.id, member.user.id);
             await updateEconomy(guild.id, member.user.id);
+            await updateLevel(guild.id, member.user.id);
 
         }
 

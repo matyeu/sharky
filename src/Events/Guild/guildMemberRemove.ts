@@ -2,6 +2,8 @@ import { GuildMember } from "discord.js";
 import { SharkClient } from "../../Librairie";
 import { find as findMember, edit as editMember } from "../../Models/members";
 import { find as findEconomy } from "../../Models/economy";
+import { find as findLevel } from "../../Models/level";
+
 
 export default async function (client: SharkClient, oldMember: GuildMember) {
 
@@ -9,9 +11,11 @@ export default async function (client: SharkClient, oldMember: GuildMember) {
 
   const memberConfig: any = await findMember(oldMember.guild!.id, oldMember.id);
   const economyConfig: any = await findEconomy(oldMember.guild!.id, oldMember.id);
+  const levelConfig: any = await findEconomy(oldMember.guild!.id, oldMember.id);
 
   if (memberConfig) memberConfig.delete();
   if (economyConfig) economyConfig.delete();
+  if (levelConfig) levelConfig.delete();
 
   oldMember.guild.invites.fetch().then(async newInvite => {
 

@@ -2,6 +2,7 @@ import { GuildMember } from "discord.js";
 import { SharkClient } from "../../Librairie";
 import { create as createMember, find as findMember, edit as editMember } from "../../Models/members";
 import { create as createEconomy } from "../../Models/economy";
+import { create as createLevel } from "../../Models/level";
 
 export default async function (client: SharkClient, newMember: GuildMember) {
 
@@ -9,6 +10,7 @@ export default async function (client: SharkClient, newMember: GuildMember) {
 
   await createMember(newMember.guild.id, newMember.user.id);
   await createEconomy(newMember.guild.id, newMember.user.id);
+  await createLevel(newMember.guild.id, newMember.user.id);
 
   newMember.guild.invites.fetch().then(async newInvite => {
 
