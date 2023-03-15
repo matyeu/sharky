@@ -42,6 +42,7 @@
 
 | Name          | Description                          | Sub-commands                | Usage                 | Cd     |
 | ------------- | ------------------------------------ | --------------------------- | --------------------- | ------ |
+| bor           | Allows you to play black or red.     | none                        | \<bet>                | 10secs |
 | crash         | Allows you to play crash.            | none                        | \<bet>                | 10secs |
 | coinflip      | Allows you to play coinflip.         | none                        | \<bet>                | 10secs |
 
