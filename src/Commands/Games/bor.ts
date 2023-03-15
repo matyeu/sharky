@@ -42,6 +42,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
     const collector = replyMessage.createMessageComponentCollector({ filter: () => true, idle: IDLE_BUTTON });
 
     let betCurrent = bet;
+    let round = 2;
 
     collector.on("collect", async (inter: ButtonInteraction) => {
 
@@ -56,7 +57,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
         if (inter.customId.split(':')[0] === 'cashout') {
 
-            casinoConfig.money += betCurrent;
+            casinoConfig.money += betCurrent * round;
             await edit(interaction.guild!.id, interaction.user.id, casinoConfig);
 
             embed.setColor(EMBED_SUCCESS)
@@ -79,6 +80,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
                     .setStyle(ButtonStyle.Primary));
 
             await inter.update({ embeds: [descriptionWin], components: [buttons] });
+            round++
 
         }
         else {
