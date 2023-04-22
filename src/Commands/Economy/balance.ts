@@ -63,7 +63,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
             return interaction.replySuccessMessage(client, language("TRANSFER_ADD").replace('%amount%', montantAdd).replace('%emoji%', money), false);
             break;
         case 'remove':
-            const montantRemove = interaction.options.get("montant", true).value as number;
+            const montantRemove = interaction.options.get("amount", true).value as number;
 
             if (montantRemove > authorConfig.bank) return interaction.replyErrorMessage(client, language("ERROR_AMOUNT"), true);
 
@@ -117,7 +117,10 @@ export const slash = {
                 type: ApplicationCommandOptionType.Subcommand,
                 options: [
                     {
-                        name: "montant",
+                        name: "amount",
+                        name_localizations: {
+                            fr: "montant"
+                        },
                         description: "Amount to be added.",
                         description_localizations: {
                             fr: "Montant à ajouter."

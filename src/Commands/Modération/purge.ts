@@ -97,7 +97,10 @@ export const slash = {
                 ],
             },
             {
-                name: "utilisateur",
+                name: "user",
+                name_localizations: {
+                    fr: "utilisateur"
+                },
                 description: "Purge les messages d'un seul utilisateur.",
                 type: ApplicationCommandOptionType.Subcommand,
                 options: [

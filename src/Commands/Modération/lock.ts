@@ -42,7 +42,10 @@ export const slash = {
                     fr: "état"
                 },
                 type: ApplicationCommandOptionType.Number,
-                description: "Indiquer le nouveau état du channel.",
+                description: "Indicate the new state of the channel.",
+                description_localizations: {
+                    fr: "Indiquer le nouveau état du channel.",
+                },
                 required: true,
                 choices: [
                     {name: "Verrouiller", value: 1},

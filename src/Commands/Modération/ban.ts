@@ -11,23 +11,22 @@ export default async function (client: SharkClient, interaction: CommandInteract
   const serverConfig: any = await findGuild(interaction.guild!.id);
 
   const userOption = interaction.options.get("user", true).value as string;
-  const userReplace = userOption!.replace("<@", "").replace(">", "");
   const reason = interaction.options.get("reason", true).value as string;
 
-  const memberClient = await client.users.fetch(userReplace.replace(/ /g, "")).catch((err: any) => {
+  const memberClient = await client.users.fetch(userOption).catch((err: any) => {
     if (!err.message.match("Invalid Form Body")) return Logger.error(err);
   });
 
-  const memberGuild = await interaction.guild?.members.cache.get(userReplace.replace(/ /g, ""))!;
+  const memberGuild = memberClient ?? await interaction.guild?.members.cache.get(userOption.replace("<@", "").replace(">", "").replace(/ /g, ""))!;
 
   const bans = await interaction.guild!.bans.fetch();
-  const memberUnban = bans.get(userReplace.replace(/ /g, ""))!;
+  const memberUnban = bans.get(userOption.replace(/ /g, ""))!;
 
   let memberStaff = interaction.guild?.members.cache.get(interaction.user.id)!;
 
-  if (!memberClient && !memberGuild && !memberUnban) return interaction.replyErrorMessage(client, language("MEMBER_NOTFOUND"), true);
+  if (!memberGuild && !memberUnban) return interaction.replyErrorMessage(client, language("MEMBER_NOTFOUND"), true);
 
-  if (memberGuild && memberStaff.roles.highest.comparePositionTo(memberGuild.roles.highest) <= 0)
+  if (!memberClient && memberGuild && memberStaff.roles.highest.comparePositionTo(memberGuild.roles.highest) <= 0)
     return interaction.replyErrorMessage(client, language("ERROR_HIGHEST"), true);
 
   const embed = new EmbedBuilder()
@@ -38,12 +37,12 @@ export default async function (client: SharkClient, interaction: CommandInteract
     })
     .setTitle(`${!memberUnban ? language("BAN") : language("UNBAN")}`)
     .setDescription(language("DESCRIPTION_EMBED").replace('%staff%', interaction.user).replace('%action%', !memberUnban ? language("BAN").toLowerCase() : language("UNBAN").toLowerCase()).replace('%reason%', reason)
-      .replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
+      .replace('%user%', !memberUnban ? `${memberGuild && memberClient ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : `${memberClient.username}#${memberClient.discriminator} (${memberClient.id})`}` : memberUnban.user.tag))
     .addFields(
       {
         name: language("ADDFIELD_MEMBER"),
-        value: !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator} (${memberGuild.user.id})`
-          : language("A_USER").replace('%userId%', userOption)}` : `${memberUnban.user.tag} (${memberUnban.user.id})`,
+        value: !memberUnban ? `${memberGuild && !memberClient ? `${memberGuild.displayName}#${memberGuild.user.discriminator} (${memberGuild.user.id})`
+          : `${memberClient.username}#${memberClient.discriminator} (${memberClient.id})`}` : `${memberUnban.user.tag} (${memberUnban.user.id})`,
         inline: true
       },
       {
@@ -109,73 +108,59 @@ export default async function (client: SharkClient, interaction: CommandInteract
       let reference: string = "";
 
       embedMod.setDescription(language("DESCRIPTION_MODLOG_BAN")
-      .replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag)
-      .replace('%userId%', userReplace).replace('%reason%', reason))
+        .replace('%user%', !memberUnban ? `${memberGuild && !memberClient ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : `${memberClient.username}#${memberClient.discriminator} (${memberClient.id})`}}` : memberUnban.user.tag)
+        .replace('%userId%', userOption).replace('%reason%', reason))
 
       if (channelPublic && serverConfig.modules.sanctions)
         await channelPublic.send({ embeds: [embedMod] }).then(async (message: Message) => { reference = message.id });
-      await createBan(interaction.guild!.id, userReplace, interaction.user.id, reason, Date.now(), reference, serverConfig.sanctionsCase);
-
-      if (memberGuild) {
-        try {
-          const embedUser = new EmbedBuilder()
-            .setColor(EMBED_INFO)
-            .setTitle(language("TITLE_EMBEDUSER").replace('%client%', client.user!.username))
-            .setDescription(language("DESCRIPTION_EMBEDUSER").replace('%server%', interaction.guild!.name).replace('%reason%', reason))
-            .setTimestamp()
-            .setFooter({ text: FOOTER_MODERATION, iconURL: interaction.client.user?.displayAvatarURL() });
-
-          const buttonInfo = new ActionRowBuilder<ButtonBuilder>()
-            .addComponents(
-              new ButtonBuilder()
-                .setCustomId(`buttonInfo`)
-                .setDisabled(true)
-                .setLabel(language("LABEL_BUTTON_USER").replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
-                .setStyle(ButtonStyle.Secondary))
-
-          await memberGuild.send({ embeds: [embedUser] });
-          await interaction.guild!.bans.create(memberGuild ? memberGuild.id : userReplace, { reason, deleteMessageSeconds: 604800 });
-          return inter.update({ embeds: [embed], components: [buttonInfo] });
-
-        }
-        catch (err: any) {
-          if (err.message.match("Cannot send messages to this user")) {
-            const buttonInfo = new ActionRowBuilder<ButtonBuilder>()
-              .addComponents(
-                new ButtonBuilder()
-                  .setCustomId(`buttonInfo`)
-                  .setDisabled(true)
-                  .setLabel(language("LABEL_BUTTON_SERVER").replace('%user%', !memberUnban ? `${memberGuild ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
-                  .setStyle(ButtonStyle.Secondary))
-
-            await Logger.warn(`${memberGuild ? memberGuild.user.tag : "User"} blocks his private messages, so he did not receive the reason for his warn.`);
-            await interaction.guild!.bans.remove(memberUnban.user.id, reason);
-            return inter.update({ embeds: [embed], components: [buttonInfo] });
-          }
-
-          return Logger.error(err);
-        }
-      } else {
-        const banConfig: any = await findBan(inter.guild!.id, memberUnban.user.id);
-
-        embedMod.setDescription(language("DESCRIPTION_MODLOG_UNBAN")
-        .replace('%user%', language("A_USER").replace('%userId%', userReplace))
-        .replace('%userId%', userReplace).replace('%reason%', reason).replace('%reference%', `[#${banConfig.case}](https://discord.com/channels/${interaction.guild!.id}/${serverConfig.channels.logs.modLog}/${banConfig.reference})`))
+      await createBan(interaction.guild!.id, userOption, interaction.user.id, reason, Date.now(), reference, serverConfig.sanctionsCase);
+      try {
+        const embedUser = new EmbedBuilder()
+          .setColor(EMBED_INFO)
+          .setTitle(language("TITLE_EMBEDUSER").replace('%client%', client.user!.username))
+          .setDescription(language("DESCRIPTION_EMBEDUSER").replace('%server%', interaction.guild!.name).replace('%reason%', reason))
+          .setTimestamp()
+          .setFooter({ text: FOOTER_MODERATION, iconURL: interaction.client.user?.displayAvatarURL() });
 
         const buttonInfo = new ActionRowBuilder<ButtonBuilder>()
           .addComponents(
             new ButtonBuilder()
               .setCustomId(`buttonInfo`)
               .setDisabled(true)
-              .setLabel(language("LABEL_BUTTON_UNBAN").replace('%user%', language("A_USER").replace('%userId%', userReplace)))
+              .setLabel(language("LABEL_BUTTON_USER").replace('%user%', !memberUnban ? `${memberGuild && !memberClient ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
               .setStyle(ButtonStyle.Secondary))
 
-        await interaction.guild!.bans.remove(memberUnban.user.id, reason);
+        await memberGuild.send({ embeds: [embedUser] });
+        await interaction.guild!.bans.create(memberGuild ? memberGuild.id : userOption, { reason, deleteMessageSeconds: 604800 });
         return inter.update({ embeds: [embed], components: [buttonInfo] });
-      }
 
+      }
+      catch (err: any) {
+        if (err.message.match("Cannot send messages to this user")) {
+          const buttonInfo = new ActionRowBuilder<ButtonBuilder>()
+            .addComponents(
+              new ButtonBuilder()
+                .setCustomId(`buttonInfo`)
+                .setDisabled(true)
+                .setLabel(language("LABEL_BUTTON_SERVER").replace('%user%', !memberUnban ? `${memberGuild && !memberClient ? `${memberGuild.displayName}#${memberGuild.user.discriminator}` : language("A_USER").replace('%userId%', userOption)}` : memberUnban.user.tag))
+                .setStyle(ButtonStyle.Secondary))
+
+          await Logger.warn(`${memberGuild && !memberClient ? memberGuild.user.tag : "User"} blocks his private messages, so he did not receive the reason for his warn.`);
+          await interaction.guild!.bans.create(memberGuild ? memberGuild.id : userOption, { reason, deleteMessageSeconds: 604800 });
+          return inter.update({ embeds: [embed], components: [buttonInfo] });
+        }
+
+        return Logger.error(err);
+      }
     }
     else {
+      const banConfig: any = await findBan(inter.guild!.id, memberUnban.user.id);
+
+      embedMod.setDescription(language("DESCRIPTION_MODLOG_UNBAN")
+        .replace('%user%', `${memberClient.username}#${memberClient.discriminator} (${memberClient.id})`)
+        .replace('%userId%', userOption).replace('%reason%', reason).replace('%reference%', `[#${banConfig.case}](https://discord.com/channels/${interaction.guild!.id}/${serverConfig.channels.logs.modLog}/${banConfig.reference})`))
+
+
       const buttonInfo = new ActionRowBuilder<ButtonBuilder>()
         .addComponents(
           new ButtonBuilder()
@@ -189,24 +174,23 @@ export default async function (client: SharkClient, interaction: CommandInteract
         const banConfig: any = await findBan(inter.guild!.id, memberUnban.user.id);
         if (banConfig) await banConfig.delete();
       });
+      
       return inter.update({ embeds: [embed], components: [buttonInfo] });
-
     }
 
-
   });
 
-  collector.on('end', _ => {
-    const buttonEnd = new ActionRowBuilder<ButtonBuilder>()
-      .addComponents(
-        new ButtonBuilder()
-          .setCustomId(`buttonEnd`)
-          .setDisabled(true)
-          .setLabel(language("COLLECTOR_END"))
-          .setStyle(ButtonStyle.Secondary))
+collector.on('end', _ => {
+  const buttonEnd = new ActionRowBuilder<ButtonBuilder>()
+    .addComponents(
+      new ButtonBuilder()
+        .setCustomId(`buttonEnd`)
+        .setDisabled(true)
+        .setLabel(language("COLLECTOR_END"))
+        .setStyle(ButtonStyle.Secondary))
 
-    replyMessage.edit({ components: [buttonEnd] });
-  });
+  replyMessage.edit({ components: [buttonEnd] });
+});
 
 }
 

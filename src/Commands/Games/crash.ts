@@ -7,7 +7,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
 
     const casinoConfig: any = await find(interaction.guild!.id, interaction.user.id);
     const bet = interaction.options.get('bet', true).value as number;
-    const member = await interaction.guild!.members.fetch(interaction.user.id)
+    const member = await interaction.guild!.members.fetch(interaction.user.id);
 
     if (casinoConfig.money < bet || bet === 0)
         return interaction.replyErrorMessage(client, language("NOT_FOUND"), true);
@@ -81,7 +81,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
                 replyEmbed = new EmbedBuilder()
                             .setColor(EMBED_ERROR)
                             .setTitle("Crash")
-                            .setDescription(language("DESCRIPTION").replace('%user%', `${member.displayName}#${member.user.discriminator}`)
+                            .setDescription(language("DESCRIPTION_LOST").replace('%user%', `${member.displayName}#${member.user.discriminator}`)
                             .replace('%bet%', bet).replace('%emoji%', client.getEmoji(EMOJIS.money)))
                             .addFields(
                                 {inline: true, name: language("MULTIPLY"), value: `${multiplier}x`},
@@ -149,7 +149,7 @@ export const slash = {
                 type: ApplicationCommandOptionType.Number,
                 description: "The amount of money you want to bet.",
                 description_localizations: {
-                    fr: "a somme d'argent que vous voulez parier.",
+                    fr: "La somme d'argent que vous voulez parier.",
                 },
                 required: true,
             }

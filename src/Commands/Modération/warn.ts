@@ -62,7 +62,7 @@ export default async function (client: SharkClient, interaction: CommandInteract
                 );
 
             const embedMod = new EmbedBuilder()
-                .setColor(deleteWarn ? ButtonStyle.Success : ButtonStyle.Danger)
+            .setColor(deleteWarn ? EMBED_SUCCESS : EMBED_CLOSE)
                 .setAuthor({
                     name: `${memberStaff.displayName}#${memberStaff.user.discriminator}`,
                     iconURL: memberStaff.displayAvatarURL()
