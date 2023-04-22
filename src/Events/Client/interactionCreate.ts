@@ -88,7 +88,7 @@ export default async function (client: SharkClient, interaction: Interaction) {
         catch (e) {
             return console.error(e);
         }
-    } else if (interaction.isSelectMenu()) {
+    } else if (interaction.isStringSelectMenu()) {
         try {
             const getSelectMenu = client.selects.get(interaction.customId.split(':')[0]);
             if (!getSelectMenu) return;
