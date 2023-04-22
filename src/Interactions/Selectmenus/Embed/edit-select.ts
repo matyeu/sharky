@@ -56,7 +56,6 @@ export default async function (client: SharkClient, interaction: SelectMenuInter
                     await edit(message.guild!.id, message.member!.id, embedConfig);
                     await embedSend(message.guild!.id, message.member!.id, interaction);
                     return collector.stop()
-                    return collector.stop()
                     break;
                 case 'picture_author':
                     if (!message.content.includes('http://') && !message.content.includes('https://')) {
